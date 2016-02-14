@@ -6,6 +6,7 @@
 # Author: burek (burek021@gmail.com)
 # License: GNU/GPL, see http://www.gnu.org/copyleft/gpl.html
 # Date: 2012-07-14
+# source https://gist.github.com/imcaspar/8778002 and https://trac.ffmpeg.org/wiki/Concatenate
 #
 # This script concatenates (joins, merges) several audio/video inputs into one
 # final output (just like as if all the inputs were played in a playlist, one
