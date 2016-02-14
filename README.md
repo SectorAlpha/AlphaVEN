@@ -11,6 +11,10 @@ For now, development is underway for a command line tool, to feature many common
 
 Much more work to do on this, but this is a good start. The syntax is to be kept as verbose as possible and cut to the chase. Simplicity is the key focus of this
 
+## Dependancies
+  - FFMPEG https://www.ffmpeg.org/
+  - Python 2 (todo - write in python3)
+
 ## TODO
 
   - alter the duration of fading in and fading out.
