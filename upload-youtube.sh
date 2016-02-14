@@ -1,4 +1,5 @@
 #!/bin/bash
+from config import youtube_email
 
 main() {
   set -e -u -o pipefail
@@ -8,7 +9,7 @@ main() {
   fi
   VIDEO=$1
   echo $VIDEO
-  youtube-upload --email=media@sector-alpha.net --title="$VIDEO" --description="http://sector-alpha.net $VIDEO" --category=Games $VIDEO --unlisted
+  youtube-upload --email=youtube_email --title="$VIDEO" --description="http://sector-alpha.net $VIDEO" --category=Games $VIDEO --unlisted
 }
   
 test "$NOEXEC" = 1 || main "$@"
