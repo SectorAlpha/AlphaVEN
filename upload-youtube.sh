@@ -1,5 +1,5 @@
 #!/bin/bash
-from config import youtube_email
+email="yourname@yourdomain.com"
 
 main() {
   set -e -u -o pipefail
