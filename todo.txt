@@ -1,0 +1,13 @@
+make_youtube_video.py: 67 (file_len), 141 and 143 - you don't ever use the file_len sensibly. Just replace line 143's for loop with a "for i,line in enumerate(f):"
+You are currently opening the file. Reading it all and ignoring what you read then closing it and opening it again and reading it all again and this time actually using it
+make_youtube_video.py: 197, 133, 131, 120 and 126 subprocess docs say that wherever possible the command argument should be a list of strings where the first entry is the program to run and the rest are it's arguments rather than a string with all the arguments in one string. Also none of your commands actually need to use the shell (apart from 133 but then I don't think that should be done in a shell command at all) and using the shell is considered a very bad idea unless absolutely necessary.
+A few of your commands need a little thinking to remove the need of the shell but it's not hard to do
+for 2>&1 instead call subprocess.Popen with stderr=subprocess.STDOUT which does the same but without needing a shell to do it.
+for </dev/null use something like FNULL = open(os.devnull, 'r') to open /dev/null for reading and then pass to the process with stdin=FNULL. Again this does the same as the shell redirect without needing a shell
+Also the passing an array makes much much much more sense when you already have an array of input like on line 197 where you have the args in an array and then have to faf to convert them safely into a single command string
+For line 133 I would suggest doing the processing in python
+for example grep could be replaced with splitting into lines then filtering
+cut is a split and then a slice
+i.e. cut -d\": \" -f2- is equivalent to s.split(":",1)[1]
+Also lines 170 and 179 possibly should have an else that just moved the time as far as possible. i.e. starttime=0 and endtime=videolen
+Oh also for instead of doing open(/dev/null) the other option is to pass stdin=PIPE and then access the pipe and immediately close it which is what opening a file to /dev/null does
