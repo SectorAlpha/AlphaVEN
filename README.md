@@ -12,19 +12,19 @@ For now, development is underway for a command line tool, to feature many common
 The syntax is to be as concise as possible - the aim is to be easier to use than raw ffmpeg, after all.
 
 ## Usage
-To run AlphaVEN, execute `python multimake_yt [OPTIONS] /file/`
-/file/ is a file containing formatted instructions, like this:
-`Example Title 01 - Test
-testvid1,no,no,no,no
-testvid2,00:00:05,00:00:07,fi,fo
-;
-Example Title 02 - Trials
-testvid2,no,no,no,no
-testvid1,no,no,no,no
-testvid2,no,00:00:03,no,no
-;
+To run AlphaVEN, execute `python multimake_yt [OPTIONS] *file*`
+*file* is a file containing formatted instructions, like this:
+`Example Title 01 - Test`
+`testvid1,no,no,no,no`
+`testvid2,00:00:05,00:00:07,fi,fo`
+`;`
+`Example Title 02 - Trials`
+`testvid2,no,no,no,no`
+`testvid1,no,no,no,no`
+`testvid2,no,00:00:03,no,no`
+`;`
 
-#This line should be ignored`
+`#This line should be ignored`
 
 The file is divided into sections by semicolons. Each section specifies a single video to be created. 
 The first line of each section is the name of the output file that will be created
@@ -35,7 +35,7 @@ The remaining lines specify sections to cut from a series of input videos. These
 4. Whether this segment should fade in (no or fi)
 5. Whether this segment should fade out (no or fo)
 
-*OPTIONS:*
+**OPTIONS:**
 
 
 ## Dependencies
