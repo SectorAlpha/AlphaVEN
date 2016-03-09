@@ -96,11 +96,11 @@ def generate_fade_string(temp_name_1, fadein, fadeout):
     return fade_string
 
 
-def run_ffmpeg(video, startseconds, endseconds, fadein, fadeout):
+def run_ffmpeg(video, startseconds, endseconds, fadein, fadeout, outnamegen):
     # infile, vcodec, size, aspect ratio, audio codec, start time, 
     #end time, fps, fps, output file
 
-    tempnameroot = namegen.next()
+    tempnameroot = outnamegen.next()
     
     if VERBOSE:
         print("Input file %s \nStart point %s \nEnd point %s \nFades: "
@@ -153,11 +153,14 @@ def ffmpeg_call(string):
     return
 
 def get_video_duration(filething):
+    #TODO update to use ffprobe instead of this complex mess
+    procstr="ffmpeg -i \"%s\" -vframes 1 -f rawvideo -y /dev/null 2>&1" \
+    % filething
     if VERBOSE:
-        print("Obtaining duration of ", filething)
+        print("Sending", procstr,"to ffmpeg")
         
-    proc, err = subprocess.Popen("ffmpeg -i %s -vframes 1 \
- -f rawvideo -y /dev/null 2>&1" % filething, stdout=subprocess.PIPE, \
+    
+    proc, err = subprocess.Popen(procstr, stdout=subprocess.PIPE, \
  shell=True).communicate()
 
 #    if VERBOSE:
@@ -251,7 +254,8 @@ default is 16:9")
                     startseconds, \
                     endseconds, \
                     fadein, \
-                    fadeout)
+                    fadeout, \
+                    namegen)
 
     if merge:
         temp_files = glob.glob(tempdir + "*")
