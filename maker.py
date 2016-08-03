@@ -2,6 +2,8 @@ import os
 import subprocess as sp
 import datetime as dt
 import warnings
+import subprocess as sp
+import sys
 
 #TODO major changes
 #-Logging
@@ -342,8 +344,8 @@ def timediff(t1, t2):
 
 if __name__ == "__main__":
     print("Running tests...")
-    vidpath1 = os.path.join("..", "res", "testvid1.mp4")
-    vidpath2 = os.path.join("..", "res", "testvid2.mp4")
+    vidpath1 = os.path.join(".", "testvideos", "testvid1.mp4")
+    vidpath2 = os.path.join(".", "testvideos", "testvid2.mp4")
     testmaker = Maker(title="testoutput",format=".mp4")
     testmaker.addVideo("vid1", vidpath1)
     testmaker.addVideo("vid2", vidpath2)
@@ -356,6 +358,10 @@ if __name__ == "__main__":
     testmaker.addConcatFilter()
     testmaker.addFilterCommand()
     testmaker.addOutputCommand()
+    print("test command")
     print(testmaker.command)
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "testmake":
+            sp.check_call(testmaker.command)
     print("Tests complete.")
             
