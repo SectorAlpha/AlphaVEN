@@ -12,7 +12,7 @@ For now, development is underway for a command line tool, to feature many common
 The syntax is to be as concise as possible - the aim is to be easier to use than raw ffmpeg, after all.
 
 ## Usage
-To run AlphaVEN, run `python alphaven [OPTIONS] [file] `
+To run AlphaVEN, run `python alphaven.py [OPTIONS] [file] `
 
 *file* is a file containing formatted instructions. For an example, see exampleinput.ven.
 
@@ -26,6 +26,10 @@ The first section may be used to define options. Starting a line with "map:" let
 -h, --help: 	Prints help
 -v, --verbose: 	Prints additional information during execution
 -s, --settings: tell alphaVEN to treat the first paragraph as settings
+
+## Testing
+
+To test whether AlphaVEN or the dependancies are working correctly, run `python maker.py`. This will return an ffmpeg command if run correctly. Additionally if you run `python maker.py testmake` the code will run the test ffmpeg command to merge testvideos/testvid1.mp4 and testvideos/testvid2.mp4 to produce testoutput.mp4.
 
 ## Dependencies
   - FFMPEG https://www.ffmpeg.org/
