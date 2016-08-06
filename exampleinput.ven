@@ -1,0 +1,29 @@
+map:vid1=testvideos/testvid1.mp4,vid2=testvideos/testvid2.mp4
+set:res=848x600,fadetime=1
+
+testoutputs/First Test Output
+fadein
+vid2,00:00:03-00:00:05
+vid1,00:00:06-00:00:08.5
+fadeout 2
+
+testoutputs/Variant Short Test
+vid2,00:00:01-00:00:02,00:00:03-00:00:07
+fadeout
+
+testoutputs/2nd Test Output (v2)
+vid1,-00:00:01,00:00:04-
+fadeout
+fadein
+vid2,00:00:06-00:00:09
+vid1
+
+testoutputs/3rd output
+vid1,-00:00:02
+fadeout 2
+fadein 1
+vid1,00:00:07-
+fadein
+vid2,00:00:04-00:00:08
+fadeout
+vid2,00:00:07-
