@@ -1,4 +1,4 @@
-map:vid1=..\res\testvid1.mp4,vid2=..\res\testvid2.mp4
+map:vid1=testvideos/testvid1.mp4,vid2=testvideos/testvid2.mp4
 set:res=848x600,fadetime=1
 
 First Test Output
