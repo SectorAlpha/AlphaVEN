@@ -216,9 +216,9 @@ class Transition:
                                    self.fadein))
             if self.fadeout:
                 #If both kinds of fade are required
-                filtercomps[0] += ", fade=out:d={1}:start_time={2}".\
-                            format(self.videosegment.linklabel.vlabel,\
-                                   self.fadeout)
+                filtercomps[0] += ", fade=out:d={0}:start_time={1}".\
+                            format(self.fadeout,\
+                                   self.starttime)
         elif self.fadeout:
             filtercomps.append("{0}fade=out:d={1}:start_time={2}".\
                             format(self.videosegment.linklabel.vlabel,\
@@ -280,7 +280,7 @@ class VideoSegment:
     def __repr__(self):
         """Create a printable representation of this segment."""
         return self.parentvideo.maker.title + "segment: " \
-                + str(self.parentvideo.maker.segmentslist.index(self))
+                + str(self.parentvideo.maker.seglist.index(self))
     
     def getDuration(self):
         """Get the duration of this video segment."""
