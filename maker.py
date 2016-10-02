@@ -146,15 +146,26 @@ class Video:
     def measureVideoLength(self):
         """Use ffprobe to determine the length of a video."""
         
+        durastr = "N/A" # giving this a reference
         findcmd = DURATIONFIND + [self.path]
+        print findcmd
         try:
             durastr = sp.check_output(findcmd).decode().strip()
         except sp.CalledProcessError:
             print("Failed to measure length of video:", self.path)
             #TODO better handling?
-            exit()
-        self.duration = dt.datetime.strptime(durastr, "%H:%M:%S.%f").time()
- 
+	if durastr != "N/A":
+            self.duration = dt.datetime.strptime(durastr, "%H:%M:%S.%f").time()
+        else:
+            print "derp"
+            findcmd = ['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-sexagesimal', '-of', 'default=noprint_wrappers=1:nokey=1'] + [self.path]
+            durastr = sp.check_output(findcmd).decode().strip()
+            try:
+                self.duration = dt.datetime.strptime(durastr, "%H:%M:%S.%f").time()
+            except:
+                print("Unable to read length of video:", self.path)
+
+
 class Transition:
     """Class representing transitions to/from a video segment."""
     
