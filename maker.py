@@ -148,7 +148,6 @@ class Video:
         
         durastr = "N/A" # giving this a reference
         findcmd = DURATIONFIND + [self.path]
-        print findcmd
         try:
             durastr = sp.check_output(findcmd).decode().strip()
         except sp.CalledProcessError:
@@ -157,7 +156,6 @@ class Video:
 	if durastr != "N/A":
             self.duration = dt.datetime.strptime(durastr, "%H:%M:%S.%f").time()
         else:
-            print "derp"
             findcmd = ['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-sexagesimal', '-of', 'default=noprint_wrappers=1:nokey=1'] + [self.path]
             durastr = sp.check_output(findcmd).decode().strip()
             try:
